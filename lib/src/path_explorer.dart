@@ -71,7 +71,8 @@ class PathExplorer<TCategory extends Enum> {
       final currentDirFilePathResults = <FilePathExplorerResult<TCategory>>{};
       for (final filePath in filePaths) {
         final x = FilePathExplorerResult<TCategory>._(
-          category: CategorizedPattern.categorize<TCategory>(filePath, categorizedPathPatterns),
+          category: CategorizedPattern.categorize<TCategory>(
+              filePath, categorizedPathPatterns,),
           path: filePath,
         );
         currentDirFilePathResults.add(x);
@@ -87,7 +88,8 @@ class PathExplorer<TCategory extends Enum> {
 
       // 4. Create the current directory result.
       final dirResult = DirPathExplorerResult<TCategory>._(
-        category: CategorizedPattern.categorize<TCategory>(dirPath, categorizedPathPatterns),
+        category: CategorizedPattern.categorize<TCategory>(
+            dirPath, categorizedPathPatterns,),
         path: dirPath,
         files: currentDirFilePathResults,
         dirs: subDirResults,
@@ -147,7 +149,8 @@ class PathExplorer<TCategory extends Enum> {
   //
 
   /// Lists all contents of the given [dirPath].
-  static Future<List<String>> _listNormalizedDirContentPaths(String dirPath) async {
+  static Future<List<String>> _listNormalizedDirContentPaths(
+      String dirPath,) async {
     final dir = Directory(dirPath);
     if (!await dir.exists()) {
       return [];
@@ -206,7 +209,8 @@ class FileReadResult extends Equatable {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class FilePathExplorerResult<TCategory extends Enum> extends PathExplorerResult<TCategory> {
+final class FilePathExplorerResult<TCategory extends Enum>
+    extends PathExplorerResult<TCategory> {
   //
   //
   //
@@ -219,7 +223,8 @@ final class FilePathExplorerResult<TCategory extends Enum> extends PathExplorerR
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class DirPathExplorerResult<TCategory extends Enum> extends PathExplorerResult<TCategory> {
+final class DirPathExplorerResult<TCategory extends Enum>
+    extends PathExplorerResult<TCategory> {
   //
   //
   //
@@ -285,7 +290,8 @@ final class DirPathExplorerResult<TCategory extends Enum> extends PathExplorerRe
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class PathExplorerResult<TCategory extends Enum> extends Equatable {
+abstract base class PathExplorerResult<TCategory extends Enum>
+    extends Equatable {
   //
   //
   //
