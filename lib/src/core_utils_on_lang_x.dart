@@ -144,8 +144,11 @@ extension CoreUtilsOnXyzGenLangX on Lang {
   }) async {
     final filePaths = await listFilePaths(dirPath);
     if (filePaths != null) {
-      final genFilePaths = filePaths.where((e) =>
-          this.isValidSrcFilePath(e) && matchesAnyPathPattern(e, pathPatterns),);
+      final genFilePaths = filePaths.where(
+        (e) =>
+            this.isValidSrcFilePath(e) &&
+            matchesAnyPathPattern(e, pathPatterns),
+      );
       for (final filePath in genFilePaths) {
         await this.deleteSrcFile(filePath);
         await onDelete?.call(filePath);
@@ -179,8 +182,11 @@ extension CoreUtilsOnXyzGenLangX on Lang {
   }) async {
     final filePaths = await listFilePaths(dirPath);
     if (filePaths != null) {
-      final genFilePaths = filePaths.where((e) =>
-          this.isValidGenFilePath(e) && matchesAnyPathPattern(e, pathPatterns),);
+      final genFilePaths = filePaths.where(
+        (e) =>
+            this.isValidGenFilePath(e) &&
+            matchesAnyPathPattern(e, pathPatterns),
+      );
       for (final filePath in genFilePaths) {
         await this.deleteGenFile(filePath);
         await onDelete?.call(filePath);

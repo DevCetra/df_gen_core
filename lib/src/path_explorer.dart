@@ -72,7 +72,9 @@ class PathExplorer<TCategory extends Enum> {
       for (final filePath in filePaths) {
         final x = FilePathExplorerResult<TCategory>._(
           category: CategorizedPattern.categorize<TCategory>(
-              filePath, categorizedPathPatterns,),
+            filePath,
+            categorizedPathPatterns,
+          ),
           path: filePath,
         );
         currentDirFilePathResults.add(x);
@@ -89,7 +91,9 @@ class PathExplorer<TCategory extends Enum> {
       // 4. Create the current directory result.
       final dirResult = DirPathExplorerResult<TCategory>._(
         category: CategorizedPattern.categorize<TCategory>(
-            dirPath, categorizedPathPatterns,),
+          dirPath,
+          categorizedPathPatterns,
+        ),
         path: dirPath,
         files: currentDirFilePathResults,
         dirs: subDirResults,
@@ -150,7 +154,8 @@ class PathExplorer<TCategory extends Enum> {
 
   /// Lists all contents of the given [dirPath].
   static Future<List<String>> _listNormalizedDirContentPaths(
-      String dirPath,) async {
+    String dirPath,
+  ) async {
     final dir = Directory(dirPath);
     if (!await dir.exists()) {
       return [];
