@@ -46,7 +46,7 @@ class PathExplorer<TCategory extends Enum> {
   /// Explores [dirPathGroups] while adhering to [categorizedPathPatterns].
   ///
   /// Returns the subfiles and subfolders found.
-  _TExploreResult<TCategory> explore() async {
+  TExploreResult<TCategory> explore() async {
     final dirPathResults = <DirPathExplorerResult<TCategory>>{};
     final filePathResults = <FilePathExplorerResult<TCategory>>{};
 
@@ -166,7 +166,7 @@ class PathExplorer<TCategory extends Enum> {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-typedef _TExploreResult<TCategory extends Enum> = Future<
+typedef TExploreResult<TCategory extends Enum> = Future<
     ({
       Set<DirPathExplorerResult<TCategory>> rootDirPathResults,
       Set<DirPathExplorerResult<TCategory>> dirPathResults,

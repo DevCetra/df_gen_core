@@ -169,7 +169,7 @@ TTypeMappers filterMappersByType(
 typedef TTypeMappers<E extends MapperEvent>
     = Map<String, String Function(E event)>;
 
-TTypeMappers<E> newTypeMappers<E extends MapperEvent>(_TEventMap<E> input) =>
+TTypeMappers<E> newTypeMappers<E extends MapperEvent>(TEventMap<E> input) =>
     Map.unmodifiable(input.map((k, v) => MapEntry(k, (e) => v(e as E))));
 
 abstract class TypeMappers {
@@ -185,5 +185,5 @@ abstract class TypeMappers {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-typedef _TEventMap<E extends MapperEvent> = Map<String, _TEventMapper<E>>;
+typedef TEventMap<E extends MapperEvent> = Map<String, _TEventMapper<E>>;
 typedef _TEventMapper<E extends MapperEvent> = String Function(E event);
