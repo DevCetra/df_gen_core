@@ -16,6 +16,7 @@ export 'extract_topmost_dir_paths.dart';
 export 'insight_mapper.dart';
 export 'valid_args_checker.dart';
 export 'get_package_lib_path.dart';
+export 'dart_annotated_class_analyzer.dart';
 export 'extract_code_from_markdown.dart';
 export 'paths.dart';
 export 'load_file_from_github.dart';
@@ -38,7 +39,7 @@ export 'insights/file_insight.dart';
 export 'insights/dir_insight.dart';
 
 // --- PRIVATE FILES (EXCLUDED) ---
-// None found.
+// export '_index.g.dart';
 
 // --- GENERATED FILES (EXCLUDED) ---
-// export '_index.g.dart';
+// None found.
