@@ -214,7 +214,8 @@ class FileReadResult extends Equatable {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class FilePathExplorerResult<TCategory extends Enum> extends PathExplorerResult<TCategory> {
+final class FilePathExplorerResult<TCategory extends Enum>
+    extends PathExplorerResult<TCategory> {
   //
   //
   //
@@ -227,7 +228,8 @@ final class FilePathExplorerResult<TCategory extends Enum> extends PathExplorerR
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class DirPathExplorerResult<TCategory extends Enum> extends PathExplorerResult<TCategory> {
+final class DirPathExplorerResult<TCategory extends Enum>
+    extends PathExplorerResult<TCategory> {
   //
   //
   //
@@ -293,7 +295,8 @@ final class DirPathExplorerResult<TCategory extends Enum> extends PathExplorerRe
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class PathExplorerResult<TCategory extends Enum> extends Equatable {
+abstract base class PathExplorerResult<TCategory extends Enum>
+    extends Equatable {
   //
   //
   //
