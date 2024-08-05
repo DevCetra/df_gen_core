@@ -1,8 +1,8 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. SSee MIT LICENSE
-// file in the root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
+// in the root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -214,8 +214,7 @@ class FileReadResult extends Equatable {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class FilePathExplorerResult<TCategory extends Enum>
-    extends PathExplorerResult<TCategory> {
+final class FilePathExplorerResult<TCategory extends Enum> extends PathExplorerResult<TCategory> {
   //
   //
   //
@@ -228,8 +227,7 @@ final class FilePathExplorerResult<TCategory extends Enum>
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class DirPathExplorerResult<TCategory extends Enum>
-    extends PathExplorerResult<TCategory> {
+final class DirPathExplorerResult<TCategory extends Enum> extends PathExplorerResult<TCategory> {
   //
   //
   //
@@ -295,8 +293,7 @@ final class DirPathExplorerResult<TCategory extends Enum>
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class PathExplorerResult<TCategory extends Enum>
-    extends Equatable {
+abstract base class PathExplorerResult<TCategory extends Enum> extends Equatable {
   //
   //
   //

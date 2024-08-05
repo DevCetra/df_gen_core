@@ -1,8 +1,8 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. SSee MIT LICENSE
-// file in the root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
+// in the root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -25,8 +25,7 @@ List<String> extractCodeSnippetsFromMarkdown(
   String content, {
   String? langCode,
 }) {
-  final dartCodeRegex =
-      RegExp('```(${langCode ?? '[^\\n]+'})\\n(.*?)```', dotAll: true);
+  final dartCodeRegex = RegExp('```(${langCode ?? '[^\\n]+'})\\n(.*?)```', dotAll: true);
   final matches = dartCodeRegex.allMatches(content);
   final snippets = matches.map((e) => e.group(2)?.trim() ?? '').toList();
   return snippets;
