@@ -2,7 +2,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
 // Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
-// in the root directory.
+// in root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -37,8 +37,7 @@ Future<void> processCommentAnnots({
 
   // Strip strings per ignorePattern from annotationHandlers.
   String $strip(String e) => e.replaceAll(ignoreExp, '').toLowerCase();
-  final onAnnotCallbacks1 =
-      onAnnotCallbacks.map((k, v) => MapEntry($strip(k), v));
+  final onAnnotCallbacks1 = onAnnotCallbacks.map((k, v) => MapEntry($strip(k), v));
 
   final annots = <int, String>{};
 
@@ -58,8 +57,7 @@ Future<void> processCommentAnnots({
     annots[lineNumber] = annot1;
 
     // Process the annot.
-    final proceed =
-        await onAnnotCallbacks1[annot1]!(lineNumber, lines, filePath);
+    final proceed = await onAnnotCallbacks1[annot1]!(lineNumber, lines, filePath);
 
     // Break the loop if the callback returns false.
     if (!proceed) {
