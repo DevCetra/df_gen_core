@@ -14,8 +14,8 @@ enum Lang {
   //
   //
 
-  DART.Lang(langCode: 'dart'),
-  TYPESCRIPT.Lang(langCode: 'ts');
+  DART(langCode: 'dart'),
+  TYPESCRIPT(langCode: 'ts');
 
   //
   //
@@ -29,7 +29,7 @@ enum Lang {
   //
   //
 
-  const Lang.Lang({
+  const Lang({
     required this.langCode,
   });
 }
