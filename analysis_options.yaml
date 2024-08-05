@@ -1,8 +1,8 @@
 ##.title
 ## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ##
-## Dart/Flutter (DF) Packages by DevCetra.com & contributors. See MIT ile in
-## the root directory.
+## Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
+## in the root directory.
 ##
 ## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ##.title~
@@ -15,7 +15,9 @@ linter:
   rules:
     always_declare_return_types: true
     avoid_renaming_method_parameters: false
+    camel_case_types: false
     constant_identifier_names: false
+    library_private_types_in_public_api: false
     non_constant_identifier_names: false
     omit_local_variable_types: true
     prefer_const_constructors_in_immutables: true
@@ -25,7 +27,6 @@ linter:
     prefer_single_quotes: true
     require_trailing_commas: true
     unnecessary_this: false
-    camel_case_types: false
 
 analyzer:
   exclude:
