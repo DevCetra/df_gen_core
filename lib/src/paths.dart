@@ -5,7 +5,7 @@
 //
 // Copyright Ⓒ Robert Mollentze
 //
-// Licensing details can be found in the LICENSE file in the root directory.
+// Licensing details can be found in the LICENSE file in root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -109,10 +109,8 @@ bool isPrivateFileName(String filePath) {
   String endType,
 ) {
   final fileName = getBaseName(filePath);
-  final a =
-      begType.isEmpty ? true : fileName.startsWith('${begType.toLowerCase()}_');
-  final b =
-      endType.isEmpty ? true : fileName.endsWith('.$endType'.toLowerCase());
+  final a = begType.isEmpty ? true : fileName.startsWith('${begType.toLowerCase()}_');
+  final b = endType.isEmpty ? true : fileName.endsWith('.$endType'.toLowerCase());
   final c = a && b;
   return (status: c, fileName: fileName);
 }

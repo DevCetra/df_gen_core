@@ -5,7 +5,7 @@
 //
 // Copyright Ⓒ Robert Mollentze
 //
-// Licensing details can be found in the LICENSE file in the root directory.
+// Licensing details can be found in the LICENSE file in root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
