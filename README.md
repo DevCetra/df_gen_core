@@ -34,7 +34,7 @@ This is an open-source project, and contributions are welcome from everyone, reg
 
 📧 Email _Robert Mollentze_ at robmllze@gmail.com
 
-### Donating
+### Donating:
 
 If you're enjoying this package and find it valuable, consider showing your appreciation with a small donation. Every bit helps in supporting future development. You can donate here:
 
