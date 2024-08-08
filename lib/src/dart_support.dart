@@ -39,13 +39,12 @@ Future<void> fixDartFile(String filePath) async {
 ///
 /// The [fallbackDartSdkPath] is used if the `DART_SDK` environment variable is
 /// not set.
-AnalysisContextCollection fixDartFile(
+AnalysisContextCollection createDartAnalysisContextCollection(
   Iterable<String> paths,
   String? fallbackDartSdkPath,
 ) {
   final sdkPath = Platform.environment['DART_SDK'] ?? fallbackDartSdkPath;
-  final includePaths =
-      paths.toSet().map((e) => p.normalize(p.absolute(e))).toList();
+  final includePaths = paths.toSet().map((e) => p.normalize(p.absolute(e))).toList();
   final collection = AnalysisContextCollection(
     includedPaths: includePaths,
     resourceProvider: PhysicalResourceProvider.INSTANCE,
