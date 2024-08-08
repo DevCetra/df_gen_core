@@ -26,6 +26,7 @@ export 'io.dart';
 export 'placeholder_on_enum_x.dart';
 export 'replacement_producer.dart';
 export 'combined_paths.dart';
+export 'dart_support.dart';
 export 'find_files_etc.dart';
 export 'print_arg_parser_usage.dart';
 export 'categorize_pattern.dart';
