@@ -4,6 +4,7 @@
 
 - Released @ 8/2024 (UTC)
 - feat: Add fmtDartFile, fixDartFile and fixDartFile functions
+- docs: Update readme
 
 ## [0.2.1]
 
