@@ -18,8 +18,8 @@ void printArgParserUsage(
   required String title,
   required String description,
 }) {
-  final topBorderLine = '╔${'═' * (title.length - 1)}╗';
-  final bottomBorderLine = '╚${'═' * (title.length - 1)}╝';
+  final topBorderLine = '╔${'═' * (title.length + 2)}╗';
+  final bottomBorderLine = '╚${'═' * (title.length + 2)}╝';
   final titleLine = '║ $title ║';
   printLightCyan(
     [
