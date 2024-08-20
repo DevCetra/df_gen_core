@@ -1,8 +1,9 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
-// in root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
+// source code is governed by an an MIT-style license that can be found in the
+// LICENSE file located in this project's root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -37,8 +38,7 @@ Future<void> processCommentAnnots({
 
   // Strip strings per ignorePattern from annotationHandlers.
   String $strip(String e) => e.replaceAll(ignoreExp, '').toLowerCase();
-  final onAnnotCallbacks1 =
-      onAnnotCallbacks.map((k, v) => MapEntry($strip(k), v));
+  final onAnnotCallbacks1 = onAnnotCallbacks.map((k, v) => MapEntry($strip(k), v));
 
   final annots = <int, String>{};
 
@@ -58,8 +58,7 @@ Future<void> processCommentAnnots({
     annots[lineNumber] = annot1;
 
     // Process the annot.
-    final proceed =
-        await onAnnotCallbacks1[annot1]!(lineNumber, lines, filePath);
+    final proceed = await onAnnotCallbacks1[annot1]!(lineNumber, lines, filePath);
 
     // Break the loop if the callback returns false.
     if (!proceed) {

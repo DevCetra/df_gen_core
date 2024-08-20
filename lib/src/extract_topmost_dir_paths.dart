@@ -1,8 +1,9 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
-// in root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
+// source code is governed by an an MIT-style license that can be found in the
+// LICENSE file located in this project's root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -18,8 +19,7 @@ List<T> extractTopmostDirPaths<T>(
   final topmostResults = <T>[];
   for (final result in dirPaths1) {
     if (topmostResults.every(
-      (topmostResult) =>
-          !toPath(result).startsWith('${toPath(topmostResult)}/'),
+      (topmostResult) => !toPath(result).startsWith('${toPath(topmostResult)}/'),
     )) {
       topmostResults.add(result);
     }
