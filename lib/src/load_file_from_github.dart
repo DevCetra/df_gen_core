@@ -21,7 +21,8 @@ Future<String> loadFileFromGitHub({
   required String filePath,
 }) async {
   // Construct the raw file URL
-  final url = 'https://raw.githubusercontent.com/$username/$repo/$branch/$filePath';
+  final url =
+      'https://raw.githubusercontent.com/$username/$repo/$branch/$filePath';
 
   try {
     // Send the GET request to fetch the file

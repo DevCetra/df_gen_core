@@ -19,7 +19,8 @@ List<T> extractTopmostDirPaths<T>(
   final topmostResults = <T>[];
   for (final result in dirPaths1) {
     if (topmostResults.every(
-      (topmostResult) => !toPath(result).startsWith('${toPath(topmostResult)}/'),
+      (topmostResult) =>
+          !toPath(result).startsWith('${toPath(topmostResult)}/'),
     )) {
       topmostResults.add(result);
     }

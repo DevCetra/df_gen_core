@@ -39,7 +39,8 @@ extension CoreUtilsOnXyzGenLangX on Lang {
   /// Whether [filePath] is a valid source file path for the language, i.e.
   /// a valid file path that is not a generated file path.
   bool isValidSrcFilePath(String filePath) {
-    return this._isValidFilePath(filePath) && !this.isValidGenFilePath(filePath);
+    return this._isValidFilePath(filePath) &&
+        !this.isValidGenFilePath(filePath);
   }
 
   /// Whether [filePath] is a valid file path for the language.
@@ -67,7 +68,8 @@ extension CoreUtilsOnXyzGenLangX on Lang {
     final baseName = p.basename(localSystemFilePath);
     final valid = this.isValidGenFilePath(localSystemFilePath);
     if (valid) {
-      final baseNameNoExt = baseName.substring(0, baseName.length - this.genExt.length);
+      final baseNameNoExt =
+          baseName.substring(0, baseName.length - this.genExt.length);
       final srcBaseName = '$baseNameNoExt${this.srcExt}';
       final result = p.join(dirName, srcBaseName);
       return result;
@@ -93,7 +95,8 @@ extension CoreUtilsOnXyzGenLangX on Lang {
     final baseName = p.basename(localSystemFilePath);
     final valid = this.isValidSrcFilePath(localSystemFilePath);
     if (valid) {
-      final baseNameNoExt = baseName.substring(0, baseName.length - this.srcExt.length);
+      final baseNameNoExt =
+          baseName.substring(0, baseName.length - this.srcExt.length);
       final srcBaseName = '$baseNameNoExt${this.srcExt}';
       final result = p.join(dirName, srcBaseName);
       return result;
@@ -143,7 +146,9 @@ extension CoreUtilsOnXyzGenLangX on Lang {
     final filePaths = await listFilePaths(dirPath);
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
-        (e) => this.isValidSrcFilePath(e) && matchesAnyPathPattern(e, pathPatterns),
+        (e) =>
+            this.isValidSrcFilePath(e) &&
+            matchesAnyPathPattern(e, pathPatterns),
       );
       for (final filePath in genFilePaths) {
         await this.deleteSrcFile(filePath);
@@ -179,7 +184,9 @@ extension CoreUtilsOnXyzGenLangX on Lang {
     final filePaths = await listFilePaths(dirPath);
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
-        (e) => this.isValidGenFilePath(e) && matchesAnyPathPattern(e, pathPatterns),
+        (e) =>
+            this.isValidGenFilePath(e) &&
+            matchesAnyPathPattern(e, pathPatterns),
       );
       for (final filePath in genFilePaths) {
         await this.deleteGenFile(filePath);
@@ -204,14 +211,20 @@ extension CoreUtilsOnXyzGenLangX on Lang {
 
   /// Converts [srcFileName] to a gen file name, e.g. 'hello.dart' -> '_hello.g.dart';
   String convertToGenFileName(String srcFileName) {
-    final a = p.basename(srcFileName).toLowerCase().replaceLast(this.srcExt, this.genExt);
+    final a = p
+        .basename(srcFileName)
+        .toLowerCase()
+        .replaceLast(this.srcExt, this.genExt);
     final b = a.startsWith('_') ? a : '_$a';
     return b;
   }
 
   /// Converts [genFileName] to a src file name, e.g. '_hello.g.dart' -> 'hello.dart';
   String convertToSrcFileName(String genFileName) {
-    final a = p.basename(genFileName).toLowerCase().replaceLast(this.genExt, this.srcExt);
+    final a = p
+        .basename(genFileName)
+        .toLowerCase()
+        .replaceLast(this.genExt, this.srcExt);
     final b = a.startsWith('_') && a.length > 1 ? a.substring(1) : a;
     return b;
   }
