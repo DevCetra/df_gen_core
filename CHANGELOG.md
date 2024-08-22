@@ -4,6 +4,7 @@
 
 - Released @ 8/2024 (UTC)
 - chore: Update dependencies
+- feat: Add load_file_from_path_or_url
 
 ## [0.2.3]
 
