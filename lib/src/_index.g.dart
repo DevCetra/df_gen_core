@@ -34,6 +34,7 @@ export 'generator_converger.dart';
 export 'split_arg.dart';
 export 'mappers_etc.dart';
 export 'process_comment_annots.dart';
+export 'load_file_from_path_or_url.dart';
 export 'replacements.dart';
 export 'insights/class_insight.dart';
 export 'insights/file_insight.dart';
