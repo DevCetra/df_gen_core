@@ -8,7 +8,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-Map<String, List<String>> parseArgs(List<String> args) {
+Map<String, List<String>> parseArgs(Iterable<String> args) {
   final argsMap = <String, List<String>>{};
   String? currentKey;
 
