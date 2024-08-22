@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.5]
+
+- Released @ 8/2024 (UTC)
+- feat: Add loadFilePathFromUrl and update dependencies
+
 ## [0.2.4]
 
 - Released @ 8/2024 (UTC)
