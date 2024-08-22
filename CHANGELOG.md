@@ -4,6 +4,7 @@
 
 - Released @ 8/2024 (UTC)
 - chore: Add parseArgs function
+- chore: Update dependencies
 
 ## [0.2.5]
 
