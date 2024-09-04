@@ -1,16 +1,18 @@
 ##.title
 ## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ##
-## Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
-## source code is governed by an an MIT-style license that can be found in the
-## LICENSE file located in this project's root directory.
+## Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+## source code is governed by an MIT-style license described in the LICENSE
+## file located in this project's root directory.
+##
+## See: https://opensource.org/license/mit
 ##
 ## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ##.title~
 
 name: df_gen_core
 description: A package that provides core utilities for practical code generation.
-version: 0.2.7
+version: 0.2.8
 repository: https://github.com/robmllze/df_gen_core
 
 ## -----------------------------------------------------------------------------
@@ -21,11 +23,11 @@ environment:
 ## -----------------------------------------------------------------------------
 
 dependencies:
-  df_collection: ^0.3.0
-  df_config: ^0.3.0
+  df_collection: ^0.4.0
+  df_config: ^0.4.0
   df_log: ^0.2.1
   df_string: ^0.2.1
-  df_type: ^0.2.3
+  df_type: ^0.5.2
 
   analyzer: ^6.8.0
   args: ^2.5.0

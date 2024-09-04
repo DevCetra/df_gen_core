@@ -1,9 +1,11 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
-// source code is governed by an an MIT-style license that can be found in the
-// LICENSE file located in this project's root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// source code is governed by an MIT-style license described in the LICENSE
+// file located in this project's root directory.
+//
+// See: https://opensource.org/license/mit
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -37,10 +39,9 @@ String buildCollectionMapper(
       .._largs = Iterable.generate(pLength, (n) => n).map((n) => 'p$n')
       .._type = element[1];
     final argIdMatch = RegExp(r'#x(\d+)').firstMatch(output);
-    collectionEvent._nameIndex =
-        argIdMatch != null && argIdMatch.groupCount > 0 //
-            ? int.tryParse(argIdMatch.group(1)!)
-            : null;
+    collectionEvent._nameIndex = argIdMatch != null && argIdMatch.groupCount > 0 //
+        ? int.tryParse(argIdMatch.group(1)!)
+        : null;
     final xHash = '#x${collectionEvent._nameIndex}';
     final formula = _buildMapper(collectionEvent, mappers);
     if (formula != null) {
@@ -103,8 +104,7 @@ String? buildObjectMapper(
 /// Mapper event base class.
 abstract base class MapperEvent {
   /// The name of the field, e.g. "firstName" or "p3".
-  String? get name =>
-      this._name ?? (this._nameIndex != null ? 'p${this._nameIndex}' : null);
+  String? get name => this._name ?? (this._nameIndex != null ? 'p${this._nameIndex}' : null);
   String? _name;
 
   /// The index of the generated field name, e.g. "p3" = 3.
@@ -140,8 +140,7 @@ String? _buildMapper(
       final typePattern = result.key;
       final match = RegExp(typePattern).firstMatch(type);
       if (match != null) {
-        event._matchGroups =
-            Iterable.generate(match.groupCount + 1, (i) => match.group(i)!);
+        event._matchGroups = Iterable.generate(match.groupCount + 1, (i) => match.group(i)!);
         final eventMapper = result.value;
         return eventMapper(event);
       }
@@ -167,8 +166,7 @@ TTypeMappers filterMappersByType(
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-typedef TTypeMappers<E extends MapperEvent>
-    = Map<String, String Function(E event)>;
+typedef TTypeMappers<E extends MapperEvent> = Map<String, String Function(E event)>;
 
 TTypeMappers<E> newTypeMappers<E extends MapperEvent>(TEventMap<E> input) =>
     Map.unmodifiable(input.map((k, v) => MapEntry(k, (e) => v(e as E))));
