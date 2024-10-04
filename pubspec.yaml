@@ -12,8 +12,16 @@
 
 name: df_gen_core
 description: A package that provides core utilities for practical code generation.
-version: 0.3.0
+version: 0.3.1
 repository: https://github.com/robmllze/df_gen_core
+funding:
+  - https://www.buymeacoffee.com/robmllze
+topics:
+  - source-gen
+  - build-runner
+  - code-generation
+  - utility
+  - tool
 
 ## -----------------------------------------------------------------------------
 
