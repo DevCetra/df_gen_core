@@ -1,10 +1,5 @@
 # Changelog
 
-## [0.3.1]
-
-- Released @ 10/2024 (UTC)
-- chore: Add topics to pubspec.yaml
-
 ## [0.3.0]
 
 - Released @ 10/2024 (UTC)
@@ -62,7 +57,7 @@
 ## [0.1.2]
 
 - Released @ 10/2024 (UTC)
-- fix: Fix _index.g.dart to include all files
+- fix: Fix \_index.g.dart to include all files
 - fix: Fix constructor name typo in lang.dart
 
 ## [0.1.1]
