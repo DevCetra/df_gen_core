@@ -12,7 +12,7 @@
 
 name: df_gen_core
 description: A package that provides core utilities for practical code generation.
-version: 0.2.8
+version: 0.3.0
 repository: https://github.com/robmllze/df_gen_core
 
 ## -----------------------------------------------------------------------------
@@ -23,23 +23,20 @@ environment:
 ## -----------------------------------------------------------------------------
 
 dependencies:
-  df_collection: ^0.4.0
-  df_config: ^0.4.0
-  df_log: ^0.2.1
-  df_string: ^0.2.1
-  df_type: ^0.5.2
-
+  df_collection: ^0.6.0
+  df_config: ^0.5.0
+  df_log: ^0.2.4
+  df_string: ^0.2.2
+  df_type: ^0.6.1
   analyzer: ^6.8.0
   args: ^2.5.0
-  collection: ^1.18.0
   equatable: ^2.0.5
   http: ^1.2.2
-  meta: ^1.15.0
+  meta: ^1.16.0
   path: ^1.9.0
   source_gen: ^1.5.0
 
 ## -----------------------------------------------------------------------------
 
 dev_dependencies:
-  lints: ^4.0.0
-  test: ^1.25.8
+  lints: ^5.0.0

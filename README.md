@@ -13,7 +13,7 @@ A package that provides core utilities for practical code generation. For a full
 
 ## Usage Example
 
-Coming soon.
+Unavailable. Please check in later.
 
 ## Installation
 
@@ -27,7 +27,6 @@ This is an open-source project, and we warmly welcome contributions from everyon
 
 ### Ways you can contribute:
 
-- **Join the discussions and ask questions:** Your curiosity can lead to valuable insights and improvements.
 - **Buy me a coffee:** If you'd like to support the project financially, consider [buying me a coffee](https://www.buymeacoffee.com/robmllze). Your support helps cover the costs of development and keeps the project growing.
 - **Share your ideas:** Every perspective matters, and your ideas can spark innovation.
 - **Report bugs:** Help us identify and fix issues to make the project more robust.
@@ -38,14 +37,6 @@ This is an open-source project, and we warmly welcome contributions from everyon
 No matter how you choose to contribute, your involvement is greatly appreciated and valued!
 
 ---
-
-### Join Reddit Discussions:
-
-💬 https://www.reddit.com/r/df_gen_core/
-
-### Join GitHub Discussions:
-
-💬 https://github.com/robmllze/df_gen_core/discussions/
 
 ### Chief Maintainer:
 
