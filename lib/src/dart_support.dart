@@ -24,7 +24,7 @@ Future<void> fmtDartFile(String filePath) async {
   try {
     await Process.run('dart', ['format', filePath]);
   } catch (_) {
-    debugLogError('Error formatting Dart file at $filePath');
+    printRed('Error formatting Dart file at $filePath');
   }
 }
 
@@ -33,7 +33,7 @@ Future<void> fixDartFile(String filePath) async {
   try {
     await Process.run('dart', ['fix', '--apply', filePath]);
   } catch (_) {
-    debugLogError('Error fixing Dart file at $filePath');
+    printRed('Error fixing Dart file at $filePath');
   }
 }
 
