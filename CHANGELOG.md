@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.2]
+
+- Released @ 10/2024 (UTC)
+- chore: Update print statement colors
+
 ## [0.3.1]
 
 - Released @ 10/2024 (UTC)
