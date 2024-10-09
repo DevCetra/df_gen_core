@@ -41,7 +41,7 @@ Future<void> runCommandLineApp<T extends ValidArgsChecker>({
     try {
       results = parser.parse(args);
     } catch (e) {
-      Here().debugLogError('Failed to parse arguments $e');
+      printRed('Failed to parse arguments $e');
       return;
     }
     if (results['help']) {
@@ -54,7 +54,7 @@ Future<void> runCommandLineApp<T extends ValidArgsChecker>({
     }
     final checker = onResults(parser, results);
     if (!checker.isValid) {
-      Here().debugLogError('You must provide all required options.');
+      printRed('You must provide all required options.');
       printArgParserUsage(
         parser,
         title: title,
@@ -64,7 +64,7 @@ Future<void> runCommandLineApp<T extends ValidArgsChecker>({
     }
     await action(parser, results, checker);
   } catch (e) {
-    Here().debugLogError(e);
+    printRed(e);
     rethrow;
   }
 }
