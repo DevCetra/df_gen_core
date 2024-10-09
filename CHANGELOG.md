@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.1]
+
+- Released @ 10/2024 (UTC)
+- fix: Remove Here() logs that may cause errors in some cases
+
 ## [0.3.0]
 
 - Released @ 10/2024 (UTC)
