@@ -10,7 +10,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'io.dart';
+import 'path_utils/file_system_utils.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -35,13 +35,12 @@ Future<void> processCommentAnnots({
   final commentAnnotExp = RegExp(commentAnnotPattern);
 
   // Read all lines from the specified file at filePath.
-  final lines = await readFileAsLines(filePath);
+  final lines = await FileSystem.readLocalFileAsLinesOrNull(filePath);
   if (lines == null || lines.isEmpty) return;
 
   // Strip strings per ignorePattern from annotationHandlers.
   String $strip(String e) => e.replaceAll(ignoreExp, '').toLowerCase();
-  final onAnnotCallbacks1 =
-      onAnnotCallbacks.map((k, v) => MapEntry($strip(k), v));
+  final onAnnotCallbacks1 = onAnnotCallbacks.map((k, v) => MapEntry($strip(k), v));
 
   final annots = <int, String>{};
 
@@ -61,8 +60,7 @@ Future<void> processCommentAnnots({
     annots[lineNumber] = annot1;
 
     // Process the annot.
-    final proceed =
-        await onAnnotCallbacks1[annot1]!(lineNumber, lines, filePath);
+    final proceed = await onAnnotCallbacks1[annot1]!(lineNumber, lines, filePath);
 
     // Break the loop if the callback returns false.
     if (!proceed) {
@@ -81,7 +79,7 @@ Future<void> processCommentAnnots({
         lines1.removeAt(index);
       }
     }
-    await writeFile(filePath, lines1.join('\n'));
+    await FileSystem.writeLocalFile(filePath, lines1.join('\n'));
   }
 }
 

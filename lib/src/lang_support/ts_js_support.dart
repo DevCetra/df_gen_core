@@ -10,29 +10,28 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:df_log/df_log.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-Future<String> loadFileFromPathOrUrl(String pathOrUrl) async {
+/// Formats the TypeScript/JavaScript file at [filePath] via the `prettier`
+/// command.
+Future<void> fmtTsJsFile(String filePath) async {
   try {
-    // Check if the string is a valid file path
-    final file = File(pathOrUrl);
-    if (file.existsSync()) {
-      return file.readAsStringSync(); // Return the content of the file
-    }
+    await Process.run('prettier', ['--write', filePath]);
+  } catch (_) {
+    printRed('Error formatting TypeScript/JavaScript file at $filePath');
+  }
+}
 
-    // If it's not a file, assume it's a URL and attempt to load from the URL
-    final response = await http.get(Uri.parse(pathOrUrl));
-    if (response.statusCode == 200) {
-      return utf8.decode(response.bodyBytes); // Return the file content
-    } else {
-      return 'Failed to load file from URL: HTTP ${response.statusCode}';
-    }
-  } catch (e) {
-    return 'Error: $e';
+/// Fixes the TypeScript/JavaScript file at [filePath] via `eslint --fix`
+/// command.
+Future<void> fixTsJsFile(String filePath) async {
+  try {
+    await Process.run('eslint', ['--fix', filePath]);
+  } catch (_) {
+    printRed('Error fixing TypeScript/JavaScript file at $filePath');
   }
 }

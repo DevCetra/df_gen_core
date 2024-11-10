@@ -10,33 +10,27 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'dart:convert';
+import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:df_log/df_log.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-Future<String> loadFileFromGitHub({
-  required String username,
-  required String repo,
-  String branch = 'main',
-  required String filePath,
-}) async {
-  // Construct the raw file URL
-  final url =
-      'https://raw.githubusercontent.com/$username/$repo/$branch/$filePath';
-
+/// Formats the Rust file at [filePath] via the `rustfmt` command.
+Future<void> fmtRustFile(String filePath) async {
   try {
-    // Send the GET request to fetch the file
-    final response = await http.get(Uri.parse(url));
+    await Process.run('rustfmt', [filePath]);
+  } catch (_) {
+    printRed('Error formatting Rust file at $filePath');
+  }
+}
 
-    // Check if the request was successful
-    if (response.statusCode == 200) {
-      return utf8.decode(response.bodyBytes); // Return the file content
-    } else {
-      return 'Failed to load file: HTTP ${response.statusCode}';
-    }
-  } catch (e) {
-    return 'Error: $e';
+/// Runs cargo fix to apply automatic fixes (compiler-related) in the Rust file
+/// at [filePath].
+Future<void> fixRustFile(String filePath) async {
+  try {
+    await Process.run('cargo', ['fix', filePath]);
+  } catch (_) {
+    printRed('Error fixing Rust file at $filePath');
   }
 }

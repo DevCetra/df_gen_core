@@ -10,49 +10,45 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'package:df_collection/df_collection.dart';
 import 'package:equatable/equatable.dart';
 
-import 'paths.dart';
+import 'package:path/path.dart' as p;
+
+import '/src/path_utils/path_utils.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-/// A mechanism to combine root and subdirectory paths to form combined
-/// directory paths that adhere to specific path patterns.
-class CombinedPaths extends Equatable {
+/// Generates a powerset of root and sub-paths that match the given patterns.
+class MatchedPathPowerset extends Equatable {
   //
   //
   //
 
-  final Set<String> paths;
-
-  //
-  //
-  //
-
-  /// Patterns for filtering paths of interest.
-  final Set<String> pathPatterns;
+  final Set<String> output;
 
   //
   //
   //
 
-  CombinedPaths(
+  MatchedPathPowerset(
     Set<String> rootPaths, {
     Set<String> subPaths = const {},
-    this.pathPatterns = const {},
-  }) : paths = _combine([rootPaths, subPaths], pathPatterns);
+    Set<String> matchPatterns = const {},
+  }) : output = _value([rootPaths, subPaths], matchPatterns);
 
   //
   //
   //
 
-  static Set<String> _combine(
+  static Set<String> _value(
     List<Set<String>> pathSets,
-    Set<String> pathPatterns,
+    Set<String> pathMatchers,
   ) {
-    return combinePathSets(pathSets).where((e) {
-      return matchesAnyPathPattern(e, pathPatterns);
-    }).toSet();
+    return powerset(pathSets, (a, b) => p.normalize(a + b))
+        .map((e) => matchesAnyPathPattern(e, pathMatchers) ? e : null)
+        .whereType<String>()
+        .toSet();
   }
 
   //
@@ -60,5 +56,5 @@ class CombinedPaths extends Equatable {
   //
 
   @override
-  List<Object?> get props => this.paths.toList();
+  List<Object?> get props => this.output.toList();
 }

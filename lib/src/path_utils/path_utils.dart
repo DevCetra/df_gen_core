@@ -79,24 +79,23 @@ String getFileNameWithoutExtension(String filePath) {
 
 /// Replaces all forward slashes in [path] with the local path separator.
 String toLocalSystemPathFormat(String path) {
-  return path.split(RegExp(r'[\\/]')).join(p.separator);
+  return p.split(path).join(p.separator);
 }
 
 /// Replaces all backslashes in [path] with forward slashes.
 String toUnixSystemPathFormat(String path) {
-  return path.split(RegExp(r'[\\/]')).join('/');
+  return p.split(path).join('/');
 }
 
 /// Replaces all forward slashes in [path] with backslashes.
 String toWindowsSystemPathFormat(String path) {
-  return path.split(RegExp(r'[\\/]')).join('\\');
+  return p.split(path).join('\\');
 }
 
-/// Checks if the provided [filePath] is a private file (starts with an
-/// underscore).
-bool isPrivateFileName(String filePath) {
-  final fileName = getBaseName(filePath);
-  return fileName.startsWith('_');
+/// Checks if the provided [filePath] starts with an underscore or not. This
+/// is commonly used to denote private files.
+bool doesFileNameStartWithUnderscore(String filePath) {
+  return getBaseName(filePath).startsWith('_');
 }
 
 /// Checks if the file name extracted from [filePath] matches the specified
@@ -109,61 +108,8 @@ bool isPrivateFileName(String filePath) {
   String endType,
 ) {
   final fileName = getBaseName(filePath);
-  final a =
-      begType.isEmpty ? true : fileName.startsWith('${begType.toLowerCase()}_');
-  final b =
-      endType.isEmpty ? true : fileName.endsWith('.$endType'.toLowerCase());
+  final a = begType.isEmpty ? true : fileName.startsWith('${begType.toLowerCase()}_');
+  final b = endType.isEmpty ? true : fileName.endsWith('.$endType'.toLowerCase());
   final c = a && b;
   return (status: c, fileName: fileName);
-}
-
-/// Combines multiple [pathSets] into a single set, returning all possible
-/// combinations.
-///
-/// Note: This function is recursive and works by joining the first two sets and
-/// then combining the resulting set with the next set, until all sets are
-/// processed.
-///
-/// Example:
-/// ```dart
-/// final pathSets = [
-///   {'path1', 'path2'},
-///   {'segmentA', 'segmentB'},
-///   {'end1', 'end2'},
-/// ];
-/// final combinedPaths = combineSets(pathSets);
-/// print(combinedPaths);
-/// ```
-///
-/// Output:
-/// ```
-/// {path1/segmentA/end1, path1/segmentA/end2, path1/segmentB/end1, path1/segmentB/end2, path2/segmentA/end1, path2/segmentA/end2, path2/segmentB/end1, path2/segmentB/end2}
-/// ```
-Set<String> combinePathSets(List<Set<String>> pathSets) {
-  late Set<String> output;
-  final input = List.of(pathSets).where((e) => e.isNotEmpty).toList();
-  if (input.isEmpty) {
-    output = {};
-  } else if (input.length == 1) {
-    output = input[0];
-  } else {
-    final joined = <String>{};
-    for (final a in input[0]) {
-      for (final b in input[1]) {
-        if (b.isEmpty) {
-          joined.add(a);
-        } else if (a.isEmpty) {
-          joined.add(b);
-        } else {
-          joined.add(p.join(a, b));
-        }
-      }
-    }
-    output = combinePathSets([
-      joined,
-      ...input.skip(2),
-    ]);
-  }
-  output = output.map((e) => p.normalize(toLocalSystemPathFormat(e))).toSet();
-  return output;
 }

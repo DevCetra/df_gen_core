@@ -15,8 +15,8 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:path/path.dart' as p;
 
-import 'categorize_pattern.dart';
-import 'combined_paths.dart';
+import '../categorize_pattern.dart';
+import 'matched_path_powerset.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -26,7 +26,7 @@ class PathExplorer<TCategory extends Enum> {
   //
   //
 
-  final Set<CombinedPaths> dirPathGroups;
+  final Set<MatchedPathPowerset> dirPathGroups;
   final Iterable<CategorizedPattern<TCategory>> categorizedPathPatterns;
 
   //
@@ -111,7 +111,7 @@ class PathExplorer<TCategory extends Enum> {
 
     // 0. Explore each dirPath in all dirPathGroups.
     for (final dirPathGroup in dirPathGroups) {
-      for (final dirPath in dirPathGroup.paths) {
+      for (final dirPath in dirPathGroup.output) {
         final dirResult = await $exploreDir(dirPath, null);
         rootDirPathResults.add(dirResult);
       }
@@ -217,8 +217,7 @@ class FileReadResult extends Equatable {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class FilePathExplorerResult<TCategory extends Enum>
-    extends PathExplorerResult<TCategory> {
+final class FilePathExplorerResult<TCategory extends Enum> extends PathExplorerResult<TCategory> {
   //
   //
   //
@@ -231,8 +230,7 @@ final class FilePathExplorerResult<TCategory extends Enum>
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class DirPathExplorerResult<TCategory extends Enum>
-    extends PathExplorerResult<TCategory> {
+final class DirPathExplorerResult<TCategory extends Enum> extends PathExplorerResult<TCategory> {
   //
   //
   //
@@ -298,8 +296,7 @@ final class DirPathExplorerResult<TCategory extends Enum>
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class PathExplorerResult<TCategory extends Enum>
-    extends Equatable {
+abstract base class PathExplorerResult<TCategory extends Enum> extends Equatable {
   //
   //
   //
