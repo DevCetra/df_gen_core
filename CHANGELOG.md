@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.2]
+
+- Released @ 10/2024 (UTC)
+- fix: Fix path joining issue in MatchedPathPowerset
+
 ## [0.4.1]
 
 - Released @ 10/2024 (UTC)

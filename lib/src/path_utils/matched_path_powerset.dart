@@ -45,7 +45,7 @@ class MatchedPathPowerset extends Equatable {
     List<Set<String>> pathSets,
     Set<String> pathMatchers,
   ) {
-    return powerset(pathSets, (a, b) => p.normalize(a + b))
+    return powerset(pathSets, (a, b) => p.normalize(p.join(a, b)))
         .map((e) => matchesAnyPathPattern(e, pathMatchers) ? e : null)
         .whereType<String>()
         .toSet();
