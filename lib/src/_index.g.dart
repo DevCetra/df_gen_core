@@ -8,7 +8,6 @@
 //.title~
 
 export 'path_utils/preview_path.dart';
-export 'path_utils/current_script_dir.dart';
 export 'path_utils/path_explorer.dart';
 export 'path_utils/extract_topmost_dir_paths.dart';
 export 'insight_mapper.dart';
@@ -18,7 +17,7 @@ export 'dart_annotated_class_analyzer.dart';
 export 'app_utils/parse_args.dart';
 export 'extract_code_from_markdown.dart';
 export 'app_utils/run_command_line_app.dart';
-export 'path_utils/file_system_utils.dart';
+export 'path_utils/file_system_utility.dart';
 export 'enums/enum_placeholder.dart';
 export 'replacement_producer.dart';
 export 'lang_support/dart_support.dart';

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.0]
+
+- Released @ 10/2024 (UTC)
+- breaking: Update structure and dependencies
+
 ## [0.3.2]
 
 - Released @ 10/2024 (UTC)

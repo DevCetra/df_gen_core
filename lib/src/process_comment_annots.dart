@@ -10,7 +10,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'path_utils/file_system_utils.dart';
+import 'path_utils/file_system_utility.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -35,7 +35,7 @@ Future<void> processCommentAnnots({
   final commentAnnotExp = RegExp(commentAnnotPattern);
 
   // Read all lines from the specified file at filePath.
-  final lines = await FileSystem.readLocalFileAsLinesOrNull(filePath);
+  final lines = await FileSystemUtility.i.readLocalFileAsLinesOrNull(filePath);
   if (lines == null || lines.isEmpty) return;
 
   // Strip strings per ignorePattern from annotationHandlers.
@@ -79,7 +79,7 @@ Future<void> processCommentAnnots({
         lines1.removeAt(index);
       }
     }
-    await FileSystem.writeLocalFile(filePath, lines1.join('\n'));
+    await FileSystemUtility.i.writeLocalFile(filePath, lines1.join('\n'));
   }
 }
 

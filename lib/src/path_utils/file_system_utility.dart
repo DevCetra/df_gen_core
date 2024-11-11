@@ -22,11 +22,13 @@ import '/df_gen_core.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract final class FileSystem {
-  const FileSystem._();
+final class FileSystemUtility {
+  static const i = FileSystemUtility._();
+
+  const FileSystemUtility._();
 
   /// Reads the contents of the file located at [filePath] as a String.
-  static Future<String?> readLocalFileOrNull(String filePath) async {
+  Future<String?> readLocalFileOrNull(String filePath) async {
     try {
       final localSystemFilePath = toLocalSystemPathFormat(filePath);
       final file = File(localSystemFilePath);
@@ -38,7 +40,7 @@ abstract final class FileSystem {
   }
 
   /// Reads the contents of the file located at [filePath] as a list of lines.
-  static Future<List<String>?> readLocalFileAsLinesOrNull(String filePath) async {
+  Future<List<String>?> readLocalFileAsLinesOrNull(String filePath) async {
     try {
       final localSystemFilePath = toLocalSystemPathFormat(filePath);
       final file = File(localSystemFilePath);
@@ -50,7 +52,7 @@ abstract final class FileSystem {
   }
 
   /// Reads the contents of the file located at [url] as a String.
-  static Future<String?> readFileFromUrlOrNull(String url) async {
+  Future<String?> readFileFromUrlOrNull(String url) async {
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -64,7 +66,7 @@ abstract final class FileSystem {
   }
 
   /// Reads the contents of a file located on GitHub as a String.
-  static Future<String?> readFileFromGitHubOrNull({
+  Future<String?> readFileFromGitHubOrNull({
     required String username,
     required String repo,
     String branch = 'main',
@@ -75,13 +77,13 @@ abstract final class FileSystem {
   }
 
   /// Reads the contents of a file located at [pathOrUrl].
-  static Future<String?> readFileFromPathOrUrl(String pathOrUrl) async {
+  Future<String?> readFileFromPathOrUrl(String pathOrUrl) async {
     return (await readLocalFileOrNull(pathOrUrl)) ?? (await readFileFromUrlOrNull(pathOrUrl));
   }
 
   /// Writes the given [content] to the file located at [filePath]. Set [append]
   /// to `true` to append the [content] to the file instead of overwriting it.
-  static Future<void> writeLocalFile(
+  Future<void> writeLocalFile(
     String filePath,
     String content, {
     bool append = false,
@@ -96,28 +98,28 @@ abstract final class FileSystem {
   }
 
   /// Clears the contents of the file located at [filePath].
-  static Future<void> clearLocalFile(String filePath) async {
+  Future<void> clearLocalFile(String filePath) async {
     final localSystemFilePath = toLocalSystemPathFormat(filePath);
     final file = File(localSystemFilePath);
     await file.writeAsString('');
   }
 
   /// Deletes the file located at [filePath].
-  static Future<void> deleteLocalFile(String filePath) async {
+  Future<void> deleteLocalFile(String filePath) async {
     final localSystemFilePath = toLocalSystemPathFormat(filePath);
     final file = File(localSystemFilePath);
     await file.delete();
   }
 
   /// Returns `true` if the file located at [filePath] exists.
-  static Future<bool> localFileExists(String filePath) {
+  Future<bool> localFileExists(String filePath) {
     final localSystemFilePath = toLocalSystemPathFormat(filePath);
     final file = File(localSystemFilePath);
     return file.exists();
   }
 
   /// Finds a file with the given [fileName] in [directoryPath] or subdirectories.
-  static Future<File?> findLocalFileByNameOrNull(String fileName, String directoryPath) async {
+  Future<File?> findLocalFileByNameOrNull(String fileName, String directoryPath) async {
     final directory = Directory(directoryPath);
     if (!await directory.exists()) return null;
     final entities = directory.listSync(recursive: true);
@@ -132,7 +134,7 @@ abstract final class FileSystem {
   /// Lists the file paths of the files in the directory located at [dirPath].
   /// Set [recursive] to `true` to list the file paths of the files in
   /// the sub-directories as well.
-  static Future<List<String>?> listLocalFilePaths(
+  Future<List<String>?> listLocalFilePaths(
     String dirPath, {
     bool recursive = true,
   }) async {
@@ -153,7 +155,7 @@ abstract final class FileSystem {
   }
 
   /// Gets the current OS's Desktop path.
-  static String? getDesktopPathOrNull() {
+  String? getDesktopPathOrNull() {
     if (Platform.isMacOS) {
       return p.join('Users', Platform.environment['USER']!, 'Desktop');
     } else if (Platform.isWindows) {
@@ -166,11 +168,11 @@ abstract final class FileSystem {
   }
 
   /// Returns the directory path of the current script.
-  static String get currentScriptDir => Directory.fromUri(Platform.script).parent.path;
+  String get currentScriptDir => Directory.fromUri(Platform.script).parent.path;
 
   /// Returns the path of the `lib` directory of [package] or `null` if the
   /// package is not found.
-  static Future<String?> getPackageLibPath(String package) async {
+  Future<String?> getPackageLibPath(String package) async {
     final packageUri = Uri.parse('package:$package/');
     final pathUri = await Isolate.resolvePackageUri(packageUri);
     if (pathUri == null) return null;
@@ -196,7 +198,7 @@ abstract final class FileSystem {
   /// The [onFileFound] callback is invoked for each file, allowing for custom
   /// filtering, i.e. if the it returns `true`, the file is added, if it returns
   /// `false`, the file is not added.
-  static Future<List<String>> findSourceFilePaths(
+  Future<List<String>> findSourceFilePaths(
     String rootDirPath, {
     required CommonLang lang,
     Set<String> pathPatterns = const {},
@@ -222,7 +224,7 @@ abstract final class FileSystem {
   /// The [onFileFound] callback is invoked for each file, allowing for custom
   /// filtering, i.e. if the it returns `true`, the file is added, if it returns
   /// `false`, the file is not added.
-  static Future<List<String>> findGeneratedFilePaths(
+  Future<List<String>> findGeneratedFilePaths(
     String rootDirPath, {
     required CommonLang lang,
     Set<String> pathPatterns = const {},
@@ -246,7 +248,7 @@ abstract final class FileSystem {
   /// The [onFilePathFound] callback is invoked for each file, allowing for custom
   /// filtering, i.e. if the it returns `true`, the file is added, if it returns
   /// `false`, the file is not added.
-  static Future<List<String>> findFilePaths(
+  Future<List<String>> findFilePaths(
     String rootDirPath, {
     Set<String> pathPatterns = const {},
     bool recursive = true,

@@ -137,17 +137,17 @@ extension type CommonLangUtils(CommonLang lang) {
   /// checks if its generated file exists at the same location. The reverse
   /// also holds true.
   Future<bool> srcAndGenPairExistsFor(String filePath) async {
-    final a = await FileSystem.localFileExists(filePath);
+    final a = await FileSystemUtility.i.localFileExists(filePath);
     if (!a) {
       return false;
     }
     if (this.isValidSrcFilePath(filePath)) {
-      final b = await FileSystem.localFileExists(
+      final b = await FileSystemUtility.i.localFileExists(
         '${filePath.substring(0, filePath.length - this.ext.length)}${this.genExt}',
       );
       return b;
     } else if (this.isValidGenFilePath(filePath)) {
-      final b = await FileSystem.localFileExists(
+      final b = await FileSystemUtility.i.localFileExists(
         '${filePath.substring(0, filePath.length - this.genExt.length)}${this.ext}',
       );
       return b;
@@ -166,7 +166,7 @@ extension type CommonLangUtils(CommonLang lang) {
     Set<String> pathPatterns = const {},
     Future<void> Function(String filePath)? onDelete,
   }) async {
-    final filePaths = await FileSystem.listLocalFilePaths(dirPath);
+    final filePaths = await FileSystemUtility.i.listLocalFilePaths(dirPath);
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
         (e) => this.isValidSrcFilePath(e) && matchesAnyPathPattern(e, pathPatterns),
@@ -185,7 +185,7 @@ extension type CommonLangUtils(CommonLang lang) {
   Future<bool> deleteSrcFile(String filePath) async {
     if (this.isValidSrcFilePath(filePath)) {
       try {
-        await FileSystem.deleteLocalFile(filePath);
+        await FileSystemUtility.i.deleteLocalFile(filePath);
         return true;
       } catch (_) {}
     }
@@ -202,7 +202,7 @@ extension type CommonLangUtils(CommonLang lang) {
     Set<String> pathPatterns = const {},
     Future<void> Function(String filePath)? onDelete,
   }) async {
-    final filePaths = await FileSystem.listLocalFilePaths(dirPath);
+    final filePaths = await FileSystemUtility.i.listLocalFilePaths(dirPath);
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
         (e) => this.isValidGenFilePath(e) && matchesAnyPathPattern(e, pathPatterns),
@@ -221,7 +221,7 @@ extension type CommonLangUtils(CommonLang lang) {
   Future<bool> deleteGenFile(String filePath) async {
     if (this.isValidGenFilePath(filePath)) {
       try {
-        await FileSystem.deleteLocalFile(filePath);
+        await FileSystemUtility.i.deleteLocalFile(filePath);
         return true;
       } catch (_) {}
     }
