@@ -34,8 +34,8 @@ class MatchedPathPowerset extends Equatable {
   MatchedPathPowerset(
     Set<String> rootPaths, {
     Set<String> subPaths = const {},
-    Set<String> matchPatterns = const {},
-  }) : output = _value([rootPaths, subPaths], matchPatterns);
+    Set<String> pathPatterns = const {},
+  }) : output = _value([rootPaths, subPaths], pathPatterns);
 
   //
   //

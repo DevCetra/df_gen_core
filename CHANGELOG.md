@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.3]
+
+- Released @ 10/2024 (UTC)
+- refactor: Rename matchPatterns to pathPatterns
+
 ## [0.4.2]
 
 - Released @ 10/2024 (UTC)
