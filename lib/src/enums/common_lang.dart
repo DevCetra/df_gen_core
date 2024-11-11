@@ -43,19 +43,15 @@ enum CommonLang {
   const CommonLang({
     required this.extName,
   });
-}
 
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-extension type CommonLangUtils(CommonLang lang) {
   /// The file extension associated with the language, e.g. '.dart'.
-  String get ext => '.${lang.extName}';
+  String get ext => '.${this.extName}';
 
   /// The generated file extension associated with the language, e.g. '.g.dart'.
-  String get genExt => '.g.${lang.extName}';
+  String get genExt => '.g.${this.extName}';
 
   /// The template file extension associated with the language, e.g. '.dart.md'.
-  String get tplExt => '$ext.md';
+  String get tmplExt => '$ext.md';
 
   /// Whether [filePath] is a valid generated file path for the language.
   bool isValidGenFilePath(String filePath) {
@@ -75,7 +71,7 @@ extension type CommonLangUtils(CommonLang lang) {
 
   /// Whether [filePath] is a valid template file path for the language.
   bool isValidTplFilePath(String filePath) {
-    return filePath.toLowerCase().endsWith(this.tplExt);
+    return filePath.toLowerCase().endsWith(this.tmplExt);
   }
 
   /// Returns corresponding source file path for [filePath] or `null` if the

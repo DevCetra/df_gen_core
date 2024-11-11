@@ -210,7 +210,7 @@ final class FileSystemUtility {
       recursive: true,
       onFilePathFound: (result) async {
         final a = await onFileFound?.call(result) ?? true;
-        final b = CommonLangUtils(lang).isValidSrcFilePath(result);
+        final b = lang.isValidSrcFilePath(result);
         return a && b;
       },
     );
@@ -236,7 +236,7 @@ final class FileSystemUtility {
       recursive: true,
       onFilePathFound: (result) async {
         final a = await onFileFound?.call(result) ?? true;
-        final b = CommonLangUtils(lang).isValidGenFilePath(result);
+        final b = lang.isValidGenFilePath(result);
         return a && b;
       },
     );
