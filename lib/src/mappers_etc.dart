@@ -105,8 +105,7 @@ String? buildObjectMapper(
 /// Mapper event base class.
 abstract base class MapperEvent {
   /// The name of the field, e.g. "firstName" or "p3".
-  String? get name =>
-      _name ?? (_nameIndex != null ? 'p${_nameIndex}' : null);
+  String? get name => _name ?? (_nameIndex != null ? 'p${_nameIndex}' : null);
   String? _name;
 
   /// The index of the generated field name, e.g. "p3" = 3.

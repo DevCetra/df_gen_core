@@ -199,20 +199,20 @@ class FileReadResult extends Equatable {
   //
   //
 
-  String get baseName => p.basename(this.path);
+  String get baseName => p.basename(path);
 
   //
   //
   //
 
-  String get rootName => this.baseName.replaceFirst(RegExp(r'\..*'), '');
+  String get rootName => baseName.replaceFirst(RegExp(r'\..*'), '');
 
   //
   //
   //
 
   @override
-  List<Object?> get props => [this.path, this.content];
+  List<Object?> get props => [path, content];
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -293,7 +293,7 @@ final class DirPathExplorerResult<TCategory extends Enum>
 
   @override
   List<Object?> get props =>
-      [this.path, this.category, ...this.files, ...this.dirs, this.parentDir];
+      [path, category, ...this.files, ...this.dirs, this.parentDir];
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░

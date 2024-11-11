@@ -77,7 +77,7 @@ final class DartAnnotatedClassAnalyzer {
   }) async {
     final fullFilePath = p.normalize(p.absolute(filePath));
     final fullFileUri = Uri.file(fullFilePath);
-    final context = this.analysisContextCollection.contextFor(fullFilePath);
+    final context = analysisContextCollection.contextFor(fullFilePath);
     final library =
         await context.currentSession.getLibraryByUri(fullFileUri.toString());
     if (library is LibraryElementResult) {

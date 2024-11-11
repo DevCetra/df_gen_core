@@ -122,7 +122,7 @@ final class FileSystemUtility {
 
   /// Finds a file with the given [fileName] in [directoryPath] or subdirectories.
   Future<File?> findLocalFileByNameOrNull(
-      String fileName, String directoryPath) async {
+      String fileName, String directoryPath,) async {
     final directory = Directory(directoryPath);
     if (!await directory.exists()) return null;
     final entities = directory.listSync(recursive: true);

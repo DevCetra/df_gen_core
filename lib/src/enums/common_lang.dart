@@ -45,34 +45,34 @@ enum CommonLang {
   });
 
   /// The file extension associated with the language, e.g. '.dart'.
-  String get ext => '.${this.extName}';
+  String get ext => '.${extName}';
 
   /// The generated file extension associated with the language, e.g. '.g.dart'.
-  String get genExt => '.g.${this.extName}';
+  String get genExt => '.g.${extName}';
 
   /// The template file extension associated with the language, e.g. '.dart.md'.
   String get tmplExt => '$ext.md';
 
   /// Whether [filePath] is a valid generated file path for the language.
   bool isValidGenFilePath(String filePath) {
-    return filePath.toLowerCase().endsWith(this.genExt);
+    return filePath.toLowerCase().endsWith(genExt);
   }
 
   /// Whether [filePath] is a valid source file path for the language, i.e.
   /// a valid file path that is not a generated file path.
   bool isValidSrcFilePath(String filePath) {
-    return this._isValidFilePath(filePath) &&
-        !this.isValidGenFilePath(filePath);
+    return _isValidFilePath(filePath) &&
+        !isValidGenFilePath(filePath);
   }
 
   /// Whether [filePath] is a valid file path for the language.
   bool _isValidFilePath(String filePath) {
-    return filePath.toLowerCase().endsWith(this.ext);
+    return filePath.toLowerCase().endsWith(ext);
   }
 
   /// Whether [filePath] is a valid template file path for the language.
   bool isValidTplFilePath(String filePath) {
-    return filePath.toLowerCase().endsWith(this.tmplExt);
+    return filePath.toLowerCase().endsWith(tmplExt);
   }
 
   /// Returns corresponding source file path for [filePath] or `null` if the
@@ -88,15 +88,15 @@ enum CommonLang {
     final localSystemFilePath = toLocalSystemPathFormat(filePath);
     final dirName = p.dirname(localSystemFilePath);
     final baseName = p.basename(localSystemFilePath);
-    final valid = this.isValidGenFilePath(localSystemFilePath);
+    final valid = isValidGenFilePath(localSystemFilePath);
     if (valid) {
       final baseNameNoExt =
-          baseName.substring(0, baseName.length - this.genExt.length);
-      final srcBaseName = '$baseNameNoExt${this.ext}';
+          baseName.substring(0, baseName.length - genExt.length);
+      final srcBaseName = '$baseNameNoExt${ext}';
       final result = p.join(dirName, srcBaseName);
       return result;
     }
-    if (baseName.endsWith(this.ext)) {
+    if (baseName.endsWith(ext)) {
       return localSystemFilePath;
     }
     return null;
@@ -115,15 +115,15 @@ enum CommonLang {
     final localSystemFilePath = toLocalSystemPathFormat(filePath);
     final dirName = p.dirname(localSystemFilePath);
     final baseName = p.basename(localSystemFilePath);
-    final valid = this.isValidSrcFilePath(localSystemFilePath);
+    final valid = isValidSrcFilePath(localSystemFilePath);
     if (valid) {
       final baseNameNoExt =
-          baseName.substring(0, baseName.length - this.ext.length);
-      final srcBaseName = '$baseNameNoExt${this.ext}';
+          baseName.substring(0, baseName.length - ext.length);
+      final srcBaseName = '$baseNameNoExt${ext}';
       final result = p.join(dirName, srcBaseName);
       return result;
     }
-    if (baseName.endsWith(this.ext)) {
+    if (baseName.endsWith(ext)) {
       return localSystemFilePath;
     }
     return null;
@@ -140,14 +140,14 @@ enum CommonLang {
     if (!a) {
       return false;
     }
-    if (this.isValidSrcFilePath(filePath)) {
+    if (isValidSrcFilePath(filePath)) {
       final b = await FileSystemUtility.i.localFileExists(
-        '${filePath.substring(0, filePath.length - this.ext.length)}${this.genExt}',
+        '${filePath.substring(0, filePath.length - ext.length)}${genExt}',
       );
       return b;
-    } else if (this.isValidGenFilePath(filePath)) {
+    } else if (isValidGenFilePath(filePath)) {
       final b = await FileSystemUtility.i.localFileExists(
-        '${filePath.substring(0, filePath.length - this.genExt.length)}${this.ext}',
+        '${filePath.substring(0, filePath.length - genExt.length)}${ext}',
       );
       return b;
     } else {
@@ -169,11 +169,11 @@ enum CommonLang {
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
         (e) =>
-            this.isValidSrcFilePath(e) &&
+            isValidSrcFilePath(e) &&
             matchesAnyPathPattern(e, pathPatterns),
       );
       for (final filePath in genFilePaths) {
-        await this.deleteSrcFile(filePath);
+        await deleteSrcFile(filePath);
         await onDelete?.call(filePath);
       }
     }
@@ -184,7 +184,7 @@ enum CommonLang {
   /// Returns `true` if the file was successfully deleted, otherwise returns
   /// `false`.
   Future<bool> deleteSrcFile(String filePath) async {
-    if (this.isValidSrcFilePath(filePath)) {
+    if (isValidSrcFilePath(filePath)) {
       try {
         await FileSystemUtility.i.deleteLocalFile(filePath);
         return true;
@@ -207,11 +207,11 @@ enum CommonLang {
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
         (e) =>
-            this.isValidGenFilePath(e) &&
+            isValidGenFilePath(e) &&
             matchesAnyPathPattern(e, pathPatterns),
       );
       for (final filePath in genFilePaths) {
-        await this.deleteGenFile(filePath);
+        await deleteGenFile(filePath);
         await onDelete?.call(filePath);
       }
     }
@@ -222,7 +222,7 @@ enum CommonLang {
   /// Returns `true` if the file was successfully deleted, otherwise returns
   /// `false`.
   Future<bool> deleteGenFile(String filePath) async {
-    if (this.isValidGenFilePath(filePath)) {
+    if (isValidGenFilePath(filePath)) {
       try {
         await FileSystemUtility.i.deleteLocalFile(filePath);
         return true;
@@ -236,7 +236,7 @@ enum CommonLang {
     final a = p
         .basename(srcFileName)
         .toLowerCase()
-        .replaceLast(this.ext, this.genExt);
+        .replaceLast(ext, genExt);
     final b = a.startsWith('_') ? a : '_$a';
     return b;
   }
@@ -246,7 +246,7 @@ enum CommonLang {
     final a = p
         .basename(genFileName)
         .toLowerCase()
-        .replaceLast(this.genExt, this.ext);
+        .replaceLast(genExt, ext);
     final b = a.startsWith('_') && a.length > 1 ? a.substring(1) : a;
     return b;
   }

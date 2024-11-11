@@ -56,5 +56,5 @@ class MatchedPathPowerset extends Equatable {
   //
 
   @override
-  List<Object?> get props => this.output.toList();
+  List<Object?> get props => output.toList();
 }
