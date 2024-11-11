@@ -45,10 +45,10 @@ enum CommonLang {
   });
 
   /// The file extension associated with the language, e.g. '.dart'.
-  String get ext => '.${extName}';
+  String get ext => '.$extName';
 
   /// The generated file extension associated with the language, e.g. '.g.dart'.
-  String get genExt => '.g.${extName}';
+  String get genExt => '.g.$extName';
 
   /// The template file extension associated with the language, e.g. '.dart.md'.
   String get tmplExt => '$ext.md';
@@ -91,7 +91,7 @@ enum CommonLang {
     if (valid) {
       final baseNameNoExt =
           baseName.substring(0, baseName.length - genExt.length);
-      final srcBaseName = '$baseNameNoExt${ext}';
+      final srcBaseName = '$baseNameNoExt$ext';
       final result = p.join(dirName, srcBaseName);
       return result;
     }
@@ -117,7 +117,7 @@ enum CommonLang {
     final valid = isValidSrcFilePath(localSystemFilePath);
     if (valid) {
       final baseNameNoExt = baseName.substring(0, baseName.length - ext.length);
-      final srcBaseName = '$baseNameNoExt${ext}';
+      final srcBaseName = '$baseNameNoExt$ext';
       final result = p.join(dirName, srcBaseName);
       return result;
     }
@@ -140,12 +140,12 @@ enum CommonLang {
     }
     if (isValidSrcFilePath(filePath)) {
       final b = await FileSystemUtility.i.localFileExists(
-        '${filePath.substring(0, filePath.length - ext.length)}${genExt}',
+        '${filePath.substring(0, filePath.length - ext.length)}$genExt',
       );
       return b;
     } else if (isValidGenFilePath(filePath)) {
       final b = await FileSystemUtility.i.localFileExists(
-        '${filePath.substring(0, filePath.length - genExt.length)}${ext}',
+        '${filePath.substring(0, filePath.length - genExt.length)}$ext',
       );
       return b;
     } else {
