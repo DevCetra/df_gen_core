@@ -44,7 +44,7 @@ Future<void> runCommandLineApp<T extends ValidArgsChecker>({
       printRed('Failed to parse arguments $e');
       return;
     }
-    if (results['help']) {
+    if (results['help'] == true) {
       printArgParserUsage(
         parser,
         title: title,

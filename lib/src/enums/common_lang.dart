@@ -61,7 +61,8 @@ enum CommonLang {
   /// Whether [filePath] is a valid source file path for the language, i.e.
   /// a valid file path that is not a generated file path.
   bool isValidSrcFilePath(String filePath) {
-    return this._isValidFilePath(filePath) && !this.isValidGenFilePath(filePath);
+    return this._isValidFilePath(filePath) &&
+        !this.isValidGenFilePath(filePath);
   }
 
   /// Whether [filePath] is a valid file path for the language.
@@ -89,7 +90,8 @@ enum CommonLang {
     final baseName = p.basename(localSystemFilePath);
     final valid = this.isValidGenFilePath(localSystemFilePath);
     if (valid) {
-      final baseNameNoExt = baseName.substring(0, baseName.length - this.genExt.length);
+      final baseNameNoExt =
+          baseName.substring(0, baseName.length - this.genExt.length);
       final srcBaseName = '$baseNameNoExt${this.ext}';
       final result = p.join(dirName, srcBaseName);
       return result;
@@ -115,7 +117,8 @@ enum CommonLang {
     final baseName = p.basename(localSystemFilePath);
     final valid = this.isValidSrcFilePath(localSystemFilePath);
     if (valid) {
-      final baseNameNoExt = baseName.substring(0, baseName.length - this.ext.length);
+      final baseNameNoExt =
+          baseName.substring(0, baseName.length - this.ext.length);
       final srcBaseName = '$baseNameNoExt${this.ext}';
       final result = p.join(dirName, srcBaseName);
       return result;
@@ -165,7 +168,9 @@ enum CommonLang {
     final filePaths = await FileSystemUtility.i.listLocalFilePaths(dirPath);
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
-        (e) => this.isValidSrcFilePath(e) && matchesAnyPathPattern(e, pathPatterns),
+        (e) =>
+            this.isValidSrcFilePath(e) &&
+            matchesAnyPathPattern(e, pathPatterns),
       );
       for (final filePath in genFilePaths) {
         await this.deleteSrcFile(filePath);
@@ -201,7 +206,9 @@ enum CommonLang {
     final filePaths = await FileSystemUtility.i.listLocalFilePaths(dirPath);
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
-        (e) => this.isValidGenFilePath(e) && matchesAnyPathPattern(e, pathPatterns),
+        (e) =>
+            this.isValidGenFilePath(e) &&
+            matchesAnyPathPattern(e, pathPatterns),
       );
       for (final filePath in genFilePaths) {
         await this.deleteGenFile(filePath);
@@ -226,14 +233,20 @@ enum CommonLang {
 
   /// Converts [srcFileName] to a gen file name, e.g. 'hello.dart' -> '_hello.g.dart';
   String convertToGenFileName(String srcFileName) {
-    final a = p.basename(srcFileName).toLowerCase().replaceLast(this.ext, this.genExt);
+    final a = p
+        .basename(srcFileName)
+        .toLowerCase()
+        .replaceLast(this.ext, this.genExt);
     final b = a.startsWith('_') ? a : '_$a';
     return b;
   }
 
   /// Converts [genFileName] to a src file name, e.g. '_hello.g.dart' -> 'hello.dart';
   String convertToSrcFileName(String genFileName) {
-    final a = p.basename(genFileName).toLowerCase().replaceLast(this.genExt, this.ext);
+    final a = p
+        .basename(genFileName)
+        .toLowerCase()
+        .replaceLast(this.genExt, this.ext);
     final b = a.startsWith('_') && a.length > 1 ? a.substring(1) : a;
     return b;
   }

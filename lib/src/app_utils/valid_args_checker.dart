@@ -38,14 +38,14 @@ abstract class ValidArgsChecker {
   /// empty.
   @nonVirtual
   bool get isValid {
-    for (final arg in this.args) {
+    for (final arg in args) {
       if (arg == null) {
         return false;
       }
       try {
         // Check if the argument is empty; if it is, return false. Otherwise, if
         // isEmpty is not a valid method, continue.
-        if (arg.isEmpty) {
+        if (arg.isEmpty == true) {
           return false;
         }
       } catch (_) {

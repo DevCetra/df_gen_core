@@ -72,13 +72,15 @@ final class FileSystemUtility {
     String branch = 'main',
     required String filePath,
   }) {
-    final url = 'https://raw.githubusercontent.com/$username/$repo/$branch/$filePath';
+    final url =
+        'https://raw.githubusercontent.com/$username/$repo/$branch/$filePath';
     return readFileFromUrlOrNull(url);
   }
 
   /// Reads the contents of a file located at [pathOrUrl].
   Future<String?> readFileFromPathOrUrl(String pathOrUrl) async {
-    return (await readLocalFileOrNull(pathOrUrl)) ?? (await readFileFromUrlOrNull(pathOrUrl));
+    return (await readLocalFileOrNull(pathOrUrl)) ??
+        (await readFileFromUrlOrNull(pathOrUrl));
   }
 
   /// Writes the given [content] to the file located at [filePath]. Set [append]
@@ -119,7 +121,8 @@ final class FileSystemUtility {
   }
 
   /// Finds a file with the given [fileName] in [directoryPath] or subdirectories.
-  Future<File?> findLocalFileByNameOrNull(String fileName, String directoryPath) async {
+  Future<File?> findLocalFileByNameOrNull(
+      String fileName, String directoryPath) async {
     final directory = Directory(directoryPath);
     if (!await directory.exists()) return null;
     final entities = directory.listSync(recursive: true);
