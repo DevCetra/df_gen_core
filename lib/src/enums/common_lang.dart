@@ -61,8 +61,7 @@ enum CommonLang {
   /// Whether [filePath] is a valid source file path for the language, i.e.
   /// a valid file path that is not a generated file path.
   bool isValidSrcFilePath(String filePath) {
-    return _isValidFilePath(filePath) &&
-        !isValidGenFilePath(filePath);
+    return _isValidFilePath(filePath) && !isValidGenFilePath(filePath);
   }
 
   /// Whether [filePath] is a valid file path for the language.
@@ -117,8 +116,7 @@ enum CommonLang {
     final baseName = p.basename(localSystemFilePath);
     final valid = isValidSrcFilePath(localSystemFilePath);
     if (valid) {
-      final baseNameNoExt =
-          baseName.substring(0, baseName.length - ext.length);
+      final baseNameNoExt = baseName.substring(0, baseName.length - ext.length);
       final srcBaseName = '$baseNameNoExt${ext}';
       final result = p.join(dirName, srcBaseName);
       return result;
@@ -168,9 +166,7 @@ enum CommonLang {
     final filePaths = await FileSystemUtility.i.listLocalFilePaths(dirPath);
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
-        (e) =>
-            isValidSrcFilePath(e) &&
-            matchesAnyPathPattern(e, pathPatterns),
+        (e) => isValidSrcFilePath(e) && matchesAnyPathPattern(e, pathPatterns),
       );
       for (final filePath in genFilePaths) {
         await deleteSrcFile(filePath);
@@ -206,9 +202,7 @@ enum CommonLang {
     final filePaths = await FileSystemUtility.i.listLocalFilePaths(dirPath);
     if (filePaths != null) {
       final genFilePaths = filePaths.where(
-        (e) =>
-            isValidGenFilePath(e) &&
-            matchesAnyPathPattern(e, pathPatterns),
+        (e) => isValidGenFilePath(e) && matchesAnyPathPattern(e, pathPatterns),
       );
       for (final filePath in genFilePaths) {
         await deleteGenFile(filePath);
@@ -233,20 +227,14 @@ enum CommonLang {
 
   /// Converts [srcFileName] to a gen file name, e.g. 'hello.dart' -> '_hello.g.dart';
   String convertToGenFileName(String srcFileName) {
-    final a = p
-        .basename(srcFileName)
-        .toLowerCase()
-        .replaceLast(ext, genExt);
+    final a = p.basename(srcFileName).toLowerCase().replaceLast(ext, genExt);
     final b = a.startsWith('_') ? a : '_$a';
     return b;
   }
 
   /// Converts [genFileName] to a src file name, e.g. '_hello.g.dart' -> 'hello.dart';
   String convertToSrcFileName(String genFileName) {
-    final a = p
-        .basename(genFileName)
-        .toLowerCase()
-        .replaceLast(genExt, ext);
+    final a = p.basename(genFileName).toLowerCase().replaceLast(genExt, ext);
     final b = a.startsWith('_') && a.length > 1 ? a.substring(1) : a;
     return b;
   }
