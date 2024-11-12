@@ -40,9 +40,7 @@ String buildCollectionMapper(
       .._type = element[1];
     final argIdMatch = RegExp(r'#x(\d+)').firstMatch(output);
     collectionEvent._nameIndex =
-        argIdMatch != null && argIdMatch.groupCount > 0 //
-            ? int.tryParse(argIdMatch.group(1)!)
-            : null;
+        argIdMatch != null && argIdMatch.groupCount > 0 ? int.tryParse(argIdMatch.group(1)!) : null;
     final xHash = '#x${collectionEvent._nameIndex}';
     final formula = _buildMapper(collectionEvent, mappers);
     if (formula != null) {
@@ -141,8 +139,7 @@ String? _buildMapper(
       final typePattern = result.key;
       final match = RegExp(typePattern).firstMatch(type);
       if (match != null) {
-        event._matchGroups =
-            Iterable.generate(match.groupCount + 1, (i) => match.group(i)!);
+        event._matchGroups = Iterable.generate(match.groupCount + 1, (i) => match.group(i)!);
         final eventMapper = result.value;
         return eventMapper(event);
       }
@@ -168,24 +165,16 @@ TTypeMappers filterMappersByType(
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-typedef TTypeMappers<E extends MapperEvent>
-    = Map<String, String Function(E event)>;
+typedef TTypeMappers<E extends MapperEvent> = Map<String, String Function(E event)>;
 
-TTypeMappers<E> newTypeMappers<E extends MapperEvent>(TEventMap<E> input) =>
-    Map.unmodifiable(input.map((k, v) => MapEntry(k, (E e) => v(e))));
+typedef TEventMap<E extends MapperEvent> = Map<String, String Function(E event)>;
 
 abstract class TypeMappers {
   TTypeMappers<MapperEvent> get fromMappers =>
       {...collectionFromMappers, ...objectFromMappers}.cast();
-  TTypeMappers<MapperEvent> get toMappers =>
-      {...collectionToMappers, ...objectToMappers}.cast();
+  TTypeMappers<MapperEvent> get toMappers => {...collectionToMappers, ...objectToMappers}.cast();
   TTypeMappers<CollectionMapperEvent> get collectionFromMappers;
   TTypeMappers<CollectionMapperEvent> get collectionToMappers;
   TTypeMappers<ObjectMapperEvent> get objectFromMappers;
   TTypeMappers<ObjectMapperEvent> get objectToMappers;
 }
-
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-typedef TEventMap<E extends MapperEvent> = Map<String, _TEventMapper<E>>;
-typedef _TEventMapper<E extends MapperEvent> = String Function(E event);
